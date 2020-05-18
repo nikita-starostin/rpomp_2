@@ -18,7 +18,8 @@ class OneNewsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_one_news)
         val author = intent.getStringExtra("AUTHOR")
-        this.toolbar_one.title = "Author - \n$author"
+        val offline = intent.getBooleanExtra("OFFLINE", false)
+        this.toolbar_one.title = "Author - \n$author${if (offline) " (offline)" else ""}"
         setSupportActionBar(toolbar_one)
         title = intent.getStringExtra("TITLE")
         date = intent.getStringExtra("DATE")

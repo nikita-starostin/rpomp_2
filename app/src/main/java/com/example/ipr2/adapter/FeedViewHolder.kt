@@ -42,7 +42,7 @@ class FeedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
 
 class FeedAdapter(
     private val rssObject: RSSObject, private val mContext:
-    Context
+    Context, private val offline: Boolean
 ) : RecyclerView.Adapter<FeedViewHolder>() {
     private val inflater = LayoutInflater.from(mContext)
     override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
@@ -58,6 +58,7 @@ class FeedAdapter(
                 intent.putExtra("DATE", rssObject.items[pos].pubDate)
                 intent.putExtra("CONTENT", rssObject.items[pos].content)
                 intent.putExtra("AUTHOR", rssObject.items[pos].author)
+                intent.putExtra("OFFLINE", offline)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 mContext.startActivity(intent)
             }
